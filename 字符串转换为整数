@@ -18,6 +18,4 @@ class Solution:
                 result = num
             return result
         else :
-            return result            
-        
-                
+            return result                     
