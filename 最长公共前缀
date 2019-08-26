@@ -2,3 +2,13 @@
 ##注解zip(list)和zip(*list)的区别：
 ##假设list = [[1,2,3],[4,5,6]]
 ##zip（list）为 zip([[1,2,3],[4,5,6]]),而zip(*list)则为 zip([1,2,3],[4,5,6])
+class Solution:
+    def longestCommonPrefix(self, strs):
+        res = ""
+        for item in zip(*strs):
+            temp = set(item)
+            if len(temp)==1:
+                res+=item[0]
+            else :
+                break
+        return res
