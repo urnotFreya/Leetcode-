@@ -12,3 +12,17 @@ class Solution:
             else :
                 break
         return res
+##排序，然后求解第一个和最后一个字符的的最长公共子序列
+class Solution:
+    def longestCommonPrefix(self, s:list(strs)):
+        if not strs:#strs is none or any empty content or False
+            return ""
+        res = ""
+        s.sort()
+        start = s[0]
+        end = s[-1]
+        for i in range(len(start)):
+            if i>len(end) or start[i] != end[i]:
+                break
+        return start[0:i]
+            
