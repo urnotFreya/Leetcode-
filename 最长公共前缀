@@ -1,34 +1,4 @@
-#寻找字符串最长公共前缀
-#主要思想：字符串列表转换为n*m维数组，再对比
-class Solution:
-    def longestCommonPrefix(self, strs: List[str]) -> str:
-        if len(strs) == 0:
-            return ""
-        if len(strs) == 1:
-            return "".join(strs)
-        for key,item in enumerate(strs):
-            newitem = list(item)
-            strs[key]=newitem
-        end = -2
-        flag = "on"    
-        for j in range(len(strs[0])):
-            
-            for i in range(1,len(strs)):
-                if j>=len(strs[i]):
-                    flag ="off"
-                    end = j
-                    break
-                if strs[i][j] != strs[i-1][j]:
-                    flag = "off"
-                    end = j
-                    break
-                end = j
-            if flag=="off":
-                break
-            if flag == "on":
-                end = j+1
-        if end>-2:
-            return "".join(strs[0][0:end])
-        else :
-            return ""
-           
+##两个点：1.使用zip打包；2.使用set([iterable])生成一个无序不重复元素的元素集
+##注解zip(list)和zip(*list)的区别：
+##假设list = [[1,2,3],[4,5,6]]
+##zip（list）为 zip([[1,2,3],[4,5,6]]),而zip(*list)则为 zip([1,2,3],[4,5,6])
