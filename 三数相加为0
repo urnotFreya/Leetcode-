@@ -1,0 +1,43 @@
+##给一个列表，找出其中三数相加为0的全部组合：
+##双指针法
+##先排序，然后固定第一个元素i，然后left=i+1，right=len(list)-1，left 和 right向中间移动
+class Solution:
+    def threeSum(self, nums: List[int]) -> List[List[int]]:
+        res = []
+        if len(nums)<3:
+            return res
+        nums.sort()
+        if nums[0] > 0:
+            return res
+        k = 0
+        left = 1
+        right = len(nums)-1
+        
+        
+        while k < len(nums)-2:
+            while left<right:
+                sum1 = nums[k]+nums[left]+nums[right] 
+                if sum1 == 0:
+                    item = [nums[k],nums[left],nums[right]]
+                    res.append(item)
+                    while left<right and nums[right] == nums[right-1]  :
+                        right = right-1
+                    right = right-1
+                    while left<right and nums[left] == nums [left+1] :
+                        left = left+1
+                    left = left+1
+                if sum1 > 0:
+                    while left<right and nums[right] == nums[right-1] :
+                        right = right-1
+                    right = right-1
+                if sum1 < 0:
+                    while left<right and nums[left] == nums [left+1] :
+                        left = left+1
+                    left = left+1
+            while k<len(nums)-2 and nums[k]==nums[k+1]  :
+                k = k+1
+            k = k+1
+            left = k+1
+            right = len(nums)-1
+                
+        return res
