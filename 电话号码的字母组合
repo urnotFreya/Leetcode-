@@ -1,0 +1,33 @@
+## 给定一串只包含2-9的数字字符串strings（2-9的数字对应26个字母，对应关系见手机九键键盘），输出该strings能组成的所有字符组合
+##“23”==》["ad", "ae", "af", "bd", "be", "bf", "cd", "ce", "cf"]
+class Solution: 
+    def letterCombinations(self, digits: str) -> List[str]:
+        def backDigits(combination, digit):
+            res = []
+            if len(combination) == 0:
+                res = digit
+            else :
+                for item in combination:
+                    for char in digit:
+                        newitem = item+char
+                        res.append(newitem)
+            return res
+        
+        phone = {
+        2:["a","b","c"],
+        3:["d","e","f"],
+        4:["g","h","i"],
+        5:["j","k","l"],
+        6:["m","n","o"],
+        7:["p","q","r","s"],
+        8:["t","u","v"],
+        9:["w","x","y","z"]}
+        output = []
+        for item in digits:
+            num = int(item)
+            digit = phone[num]
+            output = backDigits(output,digit)
+        return output
+    
+        
+        
