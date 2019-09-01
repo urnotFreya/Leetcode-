@@ -1,0 +1,25 @@
+##参考了题解写出来的
+class Solution:
+    def generateParenthesis(self, n: int) -> List[str]:
+        total = []
+        total.append(["None"])
+        total.append(["()"])
+        if n == 0:
+            return total[0]
+        if n == 1:
+            return total[1]
+        for i in range(2,n+1):
+            l = []
+            for j in range(i):
+                p = total[j]
+                q = total[i-1-j]
+                for item1 in p:
+                    for item2 in q:
+                        if item1 == "None":
+                            item1 = ""
+                        if item2 == "None":
+                            item2 = ""
+                        newitem = "("+item1+")"+item2
+                        l.append(newitem)
+            total.append(l)
+        return total[n]
