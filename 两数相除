@@ -1,0 +1,43 @@
+##计算两数相除的结果，算法不可使用*，/，mod运算，结果值在[−2**31,  2**31 − 1]，若结果溢出，返回 2**31 − 1
+class Solution:
+    def divide(self, dividend: int, divisor: int) -> int:
+        remainder = -divisor
+        quotient = 0
+        if dividend<0 and divisor<0:
+            flag = 1
+        elif dividend>0 and divisor>0:
+            flag = 1
+        else :
+            flag = -1
+        dend = abs(dividend)
+        sor = abs(divisor)
+        ld,ls = len(str(dend)),len(str(sor))
+        if ld<ls:
+            return 0
+        l_max,l_min = ld-ls+1,ld-ls
+        dic = []
+        for i in range(l_max):
+            val = str(sor)+'0'*i
+            dic.append(val)
+        key = -1
+        count = 1
+        res = int(dic[key])
+        result = []
+        while True:
+            if key < -len(dic):
+                break
+            while res <= dend:
+                res += int(dic[key])
+                count += 1
+            res -= int(dic[key])
+            key -= 1
+            count -= 1
+            result.append(count)
+            count = 0
+        r = ""
+        for item in result:
+            r += str(item)
+        hh = int(r)*flag
+        if hh > 2**31-1 or hh < -2**31:
+            return 2**31-1
+        return hh
