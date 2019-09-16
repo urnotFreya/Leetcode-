@@ -1,0 +1,38 @@
+#给定m,n，反转链表第m到第n的元素
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+
+class Solution:
+    def reverseBetween(self, head: ListNode, m: int, n: int) -> ListNode:
+        if head == None or m==n or head.next==None:
+            return head
+        prev = None
+        cur = ListNode(-1)
+        cur = head
+        count = 1
+        while count < m:
+            prev = cur
+            cur = cur.next
+            count += 1
+        ## cur移动至m
+        con = prev
+        tail = cur
+        #prev = prev.next
+        #cur = cur.next
+        #count += 1
+        while count < n+1:
+            third = cur.next
+            cur.next = prev
+            prev = cur
+            cur = third
+            count += 1
+        if con:
+            con.next = prev
+        else :
+            head = prev
+        #con.next = prev
+        tail.next = cur
+        return head
