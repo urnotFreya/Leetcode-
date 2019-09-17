@@ -1,0 +1,22 @@
+#给一个数组，和一个数K，数组中每一个数只可以+K或者-K，求解，加减完之后，数组最大值和最小值的差值，最小是多少？
+class Solution:
+    def smallestRangeII(self, A: List[int], K: int) -> int:
+        if len(A) < 2:
+            return 0
+        temp = sorted(set(A))
+        n = len(temp)
+        res = temp[-1] - temp[0]
+        if K>= res:
+            return res
+        #h的取值在0,n-1
+        for h in range(n-1):
+            tl = temp[:h]
+            tr = temp[h:]
+            maxt = max(temp[h]+K,temp[-1]-K)
+            mint = min((temp[h+1]-K,temp[0]+K))
+            if res > maxt-mint:
+                res = maxt-mint
+        return res
+                 
+            
+        
