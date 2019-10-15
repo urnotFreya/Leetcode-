@@ -1,0 +1,26 @@
+#求数组中，每两个数汉明距离的总和
+#思路：纵向比较二进制，汉明距离为：0的个数*1的个数
+class Solution:
+    def totalHammingDistance(self, nums: List[int]) -> int:
+        lnums = len(nums)
+        if lnums<2:
+            return 0
+        res = 0
+        binnums = []
+        for item in nums:
+            binnums.append(bin(item)[2:])
+        maxnum = max(nums)
+        l = len(bin(maxnum)[2:])
+        key = -1
+        for i in range(l):
+            count0 = 0
+            count1 = 0
+            for item in binnums:
+                #计算0的个数和1的个数
+                if -key>len(item) or item[key]=='0':
+                    count0 +=1         
+                else :
+                    count1 += 1
+            key -= 1
+            res += count0*count1
+        return res
