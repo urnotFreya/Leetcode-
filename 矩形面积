@@ -1,0 +1,19 @@
+#求二维平面两个矩形构成的面积
+class Solution:
+    def computeArea(self, A: int, B: int, C: int, D: int, E: int, F: int, G: int, H: int) -> int:
+        s1 = (D-B)*(C-A)
+        s2 = (G-E)*(H-F)
+        #判断相交
+        #A-C : x范围；B-D: y范围
+        if G<=A or E>=C:
+            return s1+s2 
+        if F>=D or H<=B:
+            return s1+s2
+        #a,b  e,f 比较
+        x1 = max(A,E)
+        y1 = max(B,F)
+        x2 = min(C,G)
+        y2 = min(D,H)
+        
+        area = (y2-y1)*(x2-x1)
+        return s1+s2-area
